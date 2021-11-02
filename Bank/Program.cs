@@ -11,10 +11,16 @@ namespace Bank
             {
                 balance = 594.00;
             }
-            public string login(string email, string password)
+            public string login()
             {
-                
-                return "email";
+                string username;
+                string password;
+                Console.WriteLine("please enter your username");
+                username = Console.ReadLine();
+                Console.WriteLine("please enter your password");
+                password = Console.ReadLine();
+                Console.WriteLine($"welcome {username}");
+                return username;
             }
             public double deposit()
             {
@@ -39,19 +45,19 @@ namespace Bank
         {
             double newBalance;
             string balance;
-            string username;
-            string password;
+            string login;
+            
             Account bank = new Account();
-            Console.WriteLine("please enter your email Address");
-            username = Console.ReadLine();
-            Console.WriteLine("please enter your password");
-            password = Console.ReadLine();
-            Console.WriteLine($"welcome {username}");
-            Console.WriteLine("Your current balance is");
+
+            bank.login();
+
+
+            Console.WriteLine("Your current balance is $594.00");
             Console.WriteLine("For Deposit press d. For withdrawal press w");
 
 
             balance = Console.ReadLine();
+
 
             if(balance == "d")
             {
