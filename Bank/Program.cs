@@ -11,7 +11,7 @@ namespace Bank
             {
                 balance = 594.00;
             }
-            public string login()
+            public string Login()
             {
                 string username;
                 string password;
@@ -21,11 +21,11 @@ namespace Bank
                 Console.WriteLine("please enter your password");
                 password = Console.ReadLine();
                 Console.WriteLine($"welcome {username}");
-                login.chooseTransaction();
+                login.ChooseTransaction();
                 return username;
             }
 
-            public string chooseTransaction()
+            public string ChooseTransaction()
             {
                 string balance;
                 double newBalance;
@@ -37,18 +37,18 @@ namespace Bank
 
                 if (balance == "d")
                 {
-                    newBalance = transact.deposit();
+                    newBalance = transact.Deposit();
                     Console.WriteLine($"Your new balance is {newBalance}");
                 }
                 if (balance == "w")
                 {
-                    newBalance = transact.withdrawal();
+                    newBalance = transact.Withdrawal();
                     Console.WriteLine($"your new balance is {newBalance}");
                 }
                 return balance;
             }
 
-            public double deposit()
+            public double Deposit()
             {
                 double newBalance;
                 double deposit;
@@ -57,7 +57,7 @@ namespace Bank
                 newBalance = balance + deposit;
                 return newBalance;
             }
-            public double withdrawal()
+            public double Withdrawal()
             {
                 double newBalance;
                 double withdrawal;
@@ -69,7 +69,7 @@ namespace Bank
                 if (withdrawal > balance)
                 {
                     Console.WriteLine("you do no have sufficient balance to complete this transaction");
-                    insufficientFunds.completeTransaction();
+                    insufficientFunds.CompleteTransaction();
                     newBalance = balance;
                 } 
                 return newBalance;
@@ -77,7 +77,7 @@ namespace Bank
 
             }
 
-            public string completeTransaction()
+            public void CompleteTransaction()
             {
                 Console.WriteLine("enter yes if you want to make transaction or enter no to terminate");
                 string completed;
@@ -90,20 +90,19 @@ namespace Bank
                 if (completed == "yes")
                 {
                     Account start = new Account();
-                    start.login();
-                    start.chooseTransaction();
-                    start.completeTransaction();
+                    start.Login();
+                    start.ChooseTransaction();
+                    start.CompleteTransaction();
                 }
-                return completed;
             }
         } 
         static void Main(string[] args)
         {  
             Account bank = new Account();
 
-            bank.login();
-            bank.chooseTransaction();
-            bank.completeTransaction();
+            bank.Login();
+            bank.ChooseTransaction();
+            bank.CompleteTransaction();
             Console.ReadLine();
         }
     }
