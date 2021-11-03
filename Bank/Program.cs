@@ -22,6 +22,30 @@ namespace Bank
                 Console.WriteLine($"welcome {username}");
                 return username;
             }
+
+            public string chooseTransaction()
+            {
+                string balance;
+                double newBalance;
+                Account transact = new Account();
+                Console.WriteLine("Your current balance is $594.00");
+                Console.WriteLine("For Deposit press d. For withdrawal press w");
+                balance = Console.ReadLine();
+
+
+                if (balance == "d")
+                {
+                    newBalance = transact.deposit();
+                    Console.WriteLine($"Your new balance is {newBalance}");
+                }
+                if (balance == "w")
+                {
+                    newBalance = transact.withdrawal();
+                    Console.WriteLine($"your new balance is {newBalance}");
+                }
+                return "";
+            }
+
             public double deposit()
             {
                 double newBalance;
@@ -40,49 +64,34 @@ namespace Bank
                 newBalance = balance - withdrawal;
                 return newBalance;
             }
+
+            public string completeTransaction()
+            {
+                Console.WriteLine("enter yes if you want to make transaction or enter no to terminate");
+                string completed;
+                completed = Console.ReadLine();
+
+                if (completed == "no")
+                {
+                    Console.WriteLine("thanks for banking with us");
+                }
+                if (completed == "yes")
+                {
+                    Account start = new Account();
+                    start.login();
+                    start.chooseTransaction();
+                    start.completeTransaction();
+                }
+                return completed;
+            }
         } 
         static void Main(string[] args)
-        {
-            double newBalance;
-            string balance;
-            string login;
-            
+        {  
             Account bank = new Account();
 
             bank.login();
-
-
-            Console.WriteLine("Your current balance is $594.00");
-            Console.WriteLine("For Deposit press d. For withdrawal press w");
-
-
-            balance = Console.ReadLine();
-
-
-            if(balance == "d")
-            {
-                newBalance = bank.deposit();
-                Console.WriteLine($"Your new balance is {newBalance}");
-            }
-            if(balance == "w")
-            {
-                newBalance = bank.withdrawal();
-                Console.WriteLine($"your new balance is {newBalance}");
-            }
-
-            Console.WriteLine("enter yes if you want to make transaction or enter no to terminate");
-            string completed;
-            completed = Console.ReadLine();
-
-            if(completed == "no")
-            {
-                Console.WriteLine("thanks for banking with us");
-            }
-            if(completed == "yes")
-            {
-                Console.WriteLine("ok");  
-            }
-
+            bank.chooseTransaction();
+            bank.completeTransaction();
             Console.ReadLine();
         }
     }
