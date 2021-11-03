@@ -15,11 +15,13 @@ namespace Bank
             {
                 string username;
                 string password;
+                Account login = new Account();
                 Console.WriteLine("please enter your username");
                 username = Console.ReadLine();
                 Console.WriteLine("please enter your password");
                 password = Console.ReadLine();
                 Console.WriteLine($"welcome {username}");
+                login.chooseTransaction();
                 return username;
             }
 
@@ -43,7 +45,7 @@ namespace Bank
                     newBalance = transact.withdrawal();
                     Console.WriteLine($"your new balance is {newBalance}");
                 }
-                return "";
+                return balance;
             }
 
             public double deposit()
@@ -59,10 +61,20 @@ namespace Bank
             {
                 double newBalance;
                 double withdrawal;
+                Account insufficientFunds = new Account();
                 Console.WriteLine("how much do you want to withdraw");
                 withdrawal = Double.Parse(Console.ReadLine());
                 newBalance = balance - withdrawal;
+
+                if (withdrawal > balance)
+                {
+                    Console.WriteLine("you do no have sufficient balance to complete this transaction");
+                    insufficientFunds.completeTransaction();
+                    newBalance = balance;
+                } 
                 return newBalance;
+
+
             }
 
             public string completeTransaction()
